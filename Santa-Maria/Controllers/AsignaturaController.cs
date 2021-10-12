@@ -7,7 +7,12 @@ namespace Santa_Maria.Controllers
 {
     public class AsignaturaController : Controller
     {
+
         public IActionResult Index()
+        {
+            return View(new Asignatura { Nombre="Programacion",UniqueId= Guid.NewGuid().ToString()});
+        }
+        public IActionResult MultiAsignatura()
         {
             var listaAsignaturas = new List<Asignatura>()
             {
