@@ -1,23 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Santa_Maria.Models;
 using System;
-
+using System.Linq;
 namespace Santa_Maria.Controllers
 {
     public class EscuelaController : Controller
     {
+        private EscuelaContext _context;
         public IActionResult Index()
         {
-            var escuela = new Escuela();
-            escuela.Nombre = "Santa Maria Micaela";
-            escuela.AñoDeCreación = 2005;
-            escuela.Pais = "Bolivia";
-            escuela.Ciudad = "Cochabamba";
-            escuela.Dirección = "Villa Pagador";
-            escuela.TipoEscuela = TiposEscuela.PreEscolar;
-            escuela.UniqueId = Guid.NewGuid().ToString();
             ViewBag.DataDinamico = "Prueba";
+            var escuela =_context.Escuelas.FirstOrDefault();
             return View(escuela);
+        }
+        public EscuelaController(EscuelaContext context)
+        {
+            _context = context;
         }
     }
 }
